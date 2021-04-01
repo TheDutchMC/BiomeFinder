@@ -1,1 +1,24 @@
-#Empty configuration file. you should add stuff here yourself or remove it :)
+requiredBiomes:
+- "desert"
+- "plains"
+- "birch_forest"
+
+# The amount of time between each world generation
+generationDelay: 15
+
+# The maximum amount of recursions (tries) before we give up
+maxRecursions: 500
+
+# Should we search circular, or square
+# Square will check if the absolute value of the coordinates falls within the searchDistance
+# Circular will calculate the distance between the centerPointX and the X and Z coordinate
+searchCircular: true
+searchDistance: 3000
+
+# The center point to use for calculating distances
+# This is ignored when searchCircular is false!
+centerPointX: 0
+centerPointZ: 0
+
+# Should we print debug output
+isDebug: false

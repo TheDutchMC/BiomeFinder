@@ -1,6 +1,11 @@
-name: @name@
-main: @groupId@.@mainClassName@
+name: WorldFinder
+main: nl.thedutchmc.worldfinder.WorldFinder
 version: @version@
-author: @author@
+author: TheDutchMC
 api-version: @apiVersion@
+commands:
+  findworld:
+    description: TODO
+  worldfindertp:
+    description: TODO
 

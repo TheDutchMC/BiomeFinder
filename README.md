@@ -1,18 +1,45 @@
-# BaseBukkitPlugin
-For Spigot 1.16
+# WorldFinder
+Spigot 1.16+
 
-I use this as a base template for my plugins.
+Find a World that matches your biome needs
 
-### Comes with: 
-- Main class
-- Configuration Handler
-- GitHub Actions workflow to create a Release with an attached JAR when you push a tag
+**Requires Java 11+, I won't backport to Java 8**
 
-### Easy testing:
-``gradle testJar`` will put a jar in server/plugins
+## Usage:
+For players, this will only check the current world:
+``/findworld``
 
-### Releasing: 
-``gradle releaseJar`` will put a jar in releases/
+From console, this will keep generating a new world until a good one is found  
+This will generate a world called `world_finder`, you can TP to this world with `/worldfindertp`
+``/findworld true``
 
-### Configuration for Gradle
-You can configure everything in gradle.properties. Values set here will also be set in plugin.yml
+## Permissions
+Maybe someday Ill implement them, not yet for now.
+
+## Default config
+```yaml
+requiredBiomes:
+- "desert"
+- "plains"
+- "birch_forest"
+
+# The amount of time between each world generation
+generationDelay: 15
+
+# The maximum amount of recursions (tries) before we give up
+maxRecursions: 500
+
+# Should we search circular, or square
+# Square will check if the absolute value of the coordinates falls within the searchDistance
+# Circular will calculate the distance between the centerPointX and the X and Z coordinate
+searchCircular: true
+searchDistance: 3000
+
+# The center point to use for calculating distances
+# This is ignored when searchCircular is false!
+centerPointX: 0
+centerPointZ: 0
+
+# Should we print debug output
+isDebug: false
+```
