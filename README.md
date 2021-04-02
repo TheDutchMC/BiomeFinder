@@ -6,12 +6,11 @@ Find a World that matches your biome needs
 **Requires Java 11+, I won't backport to Java 8**
 
 ## Usage:
-For players, this will only check the current world:
-``/findworld``
+For players, this will only check the current world: ``/findworld``
 
-From console, this will keep generating a new world until a good one is found  
-This will generate a world called `world_finder`, you can TP to this world with `/worldfindertp`
-``/findworld true``
+From console: ``/findworld true``, this will keep generating a new world until a good one is found  
+
+When run from console the plugin will generate a world called `world_finder`, you can TP to this world with `/worldfindertp`
 
 ## Permissions
 Maybe someday Ill implement them, not yet for now.
