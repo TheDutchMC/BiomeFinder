@@ -17,41 +17,41 @@ public class ConfigurationHandler {
     private WorldFinder plugin;
     
     public ConfigurationHandler(WorldFinder plugin) {
-	this.plugin = plugin;
+		this.plugin = plugin;
     }
     
     public FileConfiguration getConfig() {
-	return config;
+		return config;
     }
 
     public void loadConfig() {
-	file = new File(plugin.getDataFolder(), "config.yml");
-
-	if (!file.exists()) {
-	    file.getParentFile().mkdirs();
-	    plugin.saveResource("config.yml", false);
-	}
-
-	config = new YamlConfiguration();
-
-	try {
-	    config.load(file);
-	    readConfig();
-	} catch (InvalidConfigurationException e) {
-	    WorldFinder.logWarn("Invalid config.yml!");
-	} catch (IOException e) {
-	    e.printStackTrace();
-	}
+		file = new File(plugin.getDataFolder(), "config.yml");
+	
+		if (!file.exists()) {
+		    file.getParentFile().mkdirs();
+		    plugin.saveResource("config.yml", false);
+		}
+	
+		config = new YamlConfiguration();
+	
+		try {
+		    config.load(file);
+		    readConfig();
+		} catch (InvalidConfigurationException e) {
+		    WorldFinder.logWarn("Invalid config.yml!");
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
     }
 
     public void readConfig() {
-	for (String key : this.config.getKeys(true)) {
-	    Object value = this.config.get(key);
-	    this.configValues.put(key, value);
-	}
+		for (String key : this.config.getKeys(true)) {
+		    Object value = this.config.get(key);
+		    this.configValues.put(key, value);
+		}
     }
 
     public Object getValue(String key) {
-	return this.configValues.get(key);
+    	return this.configValues.get(key);
     }
 }

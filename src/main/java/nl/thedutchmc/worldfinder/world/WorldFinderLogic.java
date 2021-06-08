@@ -11,6 +11,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.World.Environment;
 import org.bukkit.WorldCreator;
+import org.bukkit.WorldType;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -94,6 +95,15 @@ public class WorldFinderLogic {
 		WorldCreator worldCreator = new WorldCreator("world_finder");
 		worldCreator.seed(this.random.nextLong());
 		worldCreator.environment(Environment.NORMAL);
+		
+		WorldType wt = WorldType.getByName((String) this.plugin.getConfigHandler().getValue("worldType"));
+		if(wt == null) {
+			WorldFinder.logWarn("Invalid worldType " + this.plugin.getConfigHandler().getValue("worldType"));
+			Bukkit.getPluginManager().disablePlugin(this.plugin);
+			return;
+		}
+		
+		worldCreator.type(wt);
 		
 		World world = Bukkit.createWorld(worldCreator);
 		WorldFinder.logDebug("Using seed: " + world.getSeed());

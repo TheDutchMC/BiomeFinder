@@ -20,5 +20,11 @@ searchDistance: 3000
 centerPointX: 0
 centerPointZ: 0
 
+# WorldType
+# - AMPLIFIED
+# - NORMAL
+# - LARGE_BIOMES
+worldType: NORMAL
+
 # Should we print debug output
 isDebug: false
