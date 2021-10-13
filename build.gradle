@@ -4,65 +4,68 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 plugins {
     id 'java'
     id 'eclipse'
-    id 'com.github.johnrengelman.shadow' version '5.0.0'    
+    id 'com.github.johnrengelman.shadow' version '7.0.0'    
 }
 
-allprojects {
+group 'nl.thedutchmc.worldfinder'
 
-	version = pluginVersion
-	group = 'nl.thedutchmc.worldfinder'
+sourceCompatibility = 1.16
+targetCompatibility = 1.16
 
-	sourceCompatibility = 1.11
-	targetCompatibility = 1.11
-
-	repositories {
-		jcenter()
-  	  	maven{ url "https://hub.spigotmc.org/nexus/content/repositories/snapshots" }
-   	 	maven{ url "https://oss.sonatype.org/content/repositories/snapshots" }
-    }
-    
-	processResources {
-    	from(sourceSets.main.resources.srcDirs) {
-        	filter ReplaceTokens, tokens: [version: version]
-			filter ReplaceTokens, tokens: [apiVersion: pluginApiVersion]
-		}
-    }
+repositories {
+	mavenCentral()
+	maven{ url "https://hub.spigotmc.org/nexus/content/repositories/snapshots" }
+	maven{ url "https://oss.sonatype.org/content/repositories/snapshots" }
 }
 
-dependencies {
-	
-	//Spigot API
+processResources {
+	from(sourceSets.main.resources.srcDirs) {
+		filter ReplaceTokens, tokens: [version: version]
+		filter ReplaceTokens, tokens: [apiVersion: pluginApiVersion]
+	}
+}
+
+dependencies {	
 	compileOnly 'org.spigotmc:spigot-api:1.16.4-R0.1-SNAPSHOT'
 	
-	compile group: 'commons-io', name: 'commons-io', version: '2.8.0'
-	
+	implementation group: 'commons-io', name: 'commons-io', version: '2.8.0'
+}
+
+processResources  {
+	duplicatesStrategy = DuplicatesStrategy.INCLUDE
+}
+
+jar {
+	archiveVersion.set(pluginVersion)
 }
 
 task testJar(type: ShadowJar) {
 	description 'Build a test Jar'
 	archiveClassifier = 'DEV'
+	archiveVersion.set(pluginVersion)
 	from sourceSets.main.output
-	configurations = [project.configurations.runtime]	
+	configurations = [project.configurations.runtimeClasspath]	
 	destinationDirectory = file("$rootDir/server/plugins")
 }
 
 task releaseJar(type: ShadowJar) {
 	description 'Build a release Jar'
 	archiveClassifier = 'RELEASE'
+	archiveVersion.set(pluginVersion)
 	from sourceSets.main.output
-	configurations = [project.configurations.runtime]	
+	configurations = [project.configurations.runtimeClasspath]	
 	destinationDirectory = file("$rootDir/releases")
 }
 
 //This task is for GitHub Actions only
 task ghActions(type: ShadowJar) {	
 	description 'GitHub Actions Task. Do not use in regular development!'
-	version = ''
+	archiveVersion.set('')
 	archiveClassifier = ''
 	archiveBaseName = 'output'
 	
 	from sourceSets.main.output
-	configurations = [project.configurations.runtime]	
+	configurations = [project.configurations.runtimeClasspath]	
 	destinationDirectory = file("$rootDir/actions")
 }
 
