@@ -1,4 +1,4 @@
-package nl.thedutchmc.worldfinder.listeners;
+package dev.array21.worldfinder.listeners;
 
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;

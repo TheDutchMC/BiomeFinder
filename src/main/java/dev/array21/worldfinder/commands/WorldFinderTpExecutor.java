@@ -1,4 +1,4 @@
-package nl.thedutchmc.worldfinder.commands;
+package dev.array21.worldfinder.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.World;

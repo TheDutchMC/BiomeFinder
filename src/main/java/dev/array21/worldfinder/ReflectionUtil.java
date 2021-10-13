@@ -3,7 +3,7 @@
  * 
  * This class can be included in your project however you see fit, just include this little comment block :)
  */
-package nl.thedutchmc.worldfinder;
+package dev.array21.worldfinder;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;

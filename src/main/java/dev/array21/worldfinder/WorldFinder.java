@@ -1,9 +1,9 @@
-package nl.thedutchmc.worldfinder;
+package dev.array21.worldfinder;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-import nl.thedutchmc.worldfinder.commands.FindWorldCommandExecutor;
-import nl.thedutchmc.worldfinder.commands.WorldFinderTpExecutor;
+import dev.array21.worldfinder.commands.FindWorldCommandExecutor;
+import dev.array21.worldfinder.commands.WorldFinderTpExecutor;
 
 public class WorldFinder extends JavaPlugin {
 

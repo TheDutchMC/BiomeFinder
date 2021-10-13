@@ -1,4 +1,4 @@
-package nl.thedutchmc.worldfinder.world;
+package dev.array21.worldfinder.world;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +16,7 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import nl.thedutchmc.worldfinder.WorldFinder;
+import dev.array21.worldfinder.WorldFinder;
 
 public class WorldFinderLogic {
 

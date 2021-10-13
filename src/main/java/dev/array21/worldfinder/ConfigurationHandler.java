@@ -1,4 +1,4 @@
-package nl.thedutchmc.worldfinder;
+package dev.array21.worldfinder;
 
 import java.io.File;
 import java.io.IOException;

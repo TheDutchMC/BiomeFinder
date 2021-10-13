@@ -1,4 +1,4 @@
-package nl.thedutchmc.worldfinder.world;
+package dev.array21.worldfinder.world;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,8 +7,8 @@ import java.util.Map;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.bukkit.World;
 
-import nl.thedutchmc.worldfinder.ReflectionUtil;
-import nl.thedutchmc.worldfinder.WorldFinder;
+import dev.array21.worldfinder.ReflectionUtil;
+import dev.array21.worldfinder.WorldFinder;
 
 public class WorldAnalyser {
 

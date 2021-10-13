@@ -1,4 +1,4 @@
-package nl.thedutchmc.worldfinder.commands;
+package dev.array21.worldfinder.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -8,10 +8,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import net.md_5.bungee.api.ChatColor;
-import nl.thedutchmc.worldfinder.WorldFinder;
-import nl.thedutchmc.worldfinder.listeners.PlayerJoinEventListener;
-import nl.thedutchmc.worldfinder.world.WorldAnalyser;
-import nl.thedutchmc.worldfinder.world.WorldFinderLogic;
+import dev.array21.worldfinder.WorldFinder;
+import dev.array21.worldfinder.listeners.PlayerJoinEventListener;
+import dev.array21.worldfinder.world.WorldAnalyser;
+import dev.array21.worldfinder.world.WorldFinderLogic;
 
 public class FindWorldCommandExecutor implements CommandExecutor {
 
