@@ -7,9 +7,10 @@ import java.util.Map;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.bukkit.World;
 
-import dev.array21.worldfinder.ReflectionUtil;
+import dev.array21.bukkitreflectionlib.ReflectionUtil;
 import dev.array21.worldfinder.WorldFinder;
 
+@SuppressWarnings("deprecation")
 public class WorldAnalyser {
 
 	private WorldFinder plugin;
@@ -23,21 +24,39 @@ public class WorldAnalyser {
 
 	static {
 		try {
-			Class<?> minecraftServerClass = ReflectionUtil.getNmsClass("MinecraftServer");
-			Class<?> iRegistryCustomClass = ReflectionUtil.getNmsClass("IRegistryCustom");
+			if(ReflectionUtil.isUseNewSpigotPackaging()) {
+				Class<?> minecraftServerClass = ReflectionUtil.getMinecraftClass("server.MinecraftServer");
+				Class<?> iRegistryCustomClass = ReflectionUtil.getMinecraftClass("core.IRegistryCustom");
 
-			vec3dClass = ReflectionUtil.getNmsClass("Vec3D");
-			minecraftKeyClass = ReflectionUtil.getNmsClass("MinecraftKey");
-			blockPositionClass = ReflectionUtil.getNmsClass("BlockPosition");
-			baseBlockPositionClass = ReflectionUtil.getNmsClass("BaseBlockPosition");
-			biomeBaseClass = ReflectionUtil.getNmsClass("BiomeBase");
-			iRegistryClass = ReflectionUtil.getNmsClass("IRegistry");
+				vec3dClass = ReflectionUtil.getMinecraftClass("world.phys.Vec3D");
+				minecraftKeyClass = ReflectionUtil.getMinecraftClass("resources.MinecraftKey");
+				blockPositionClass = ReflectionUtil.getMinecraftClass("core.BlockPosition");
+				baseBlockPositionClass = ReflectionUtil.getMinecraftClass("core.BaseBlockPosition");
+				biomeBaseClass = ReflectionUtil.getMinecraftClass("world.level.biome.BiomeBase");
+				iRegistryClass = ReflectionUtil.getMinecraftClass("core.IRegistry");
+				
+				Object minecraftServer = ReflectionUtil.invokeMethod(minecraftServerClass, null, "getServer", null, null);
+				Object customRegistry = ReflectionUtil.invokeMethod(minecraftServerClass, minecraftServer, "getCustomRegistry");
+				Object aoResourceKey = ReflectionUtil.getObject(null, iRegistryClass, "aO");
+				
+				customRegistryWritable = ReflectionUtil.invokeMethod(iRegistryCustomClass, customRegistry, "b", new Object[] { aoResourceKey });
+			} else {
+				Class<?> minecraftServerClass = ReflectionUtil.getNmsClass("MinecraftServer");
+				Class<?> iRegistryCustomClass = ReflectionUtil.getNmsClass("IRegistryCustom");
 
-			Object minecraftServer = ReflectionUtil.invokeMethod(minecraftServerClass, null, "getServer", null, null);
-			Object customRegistry = ReflectionUtil.invokeMethod(minecraftServerClass, minecraftServer, "getCustomRegistry");
-			Object ayResourceKey = ReflectionUtil.getObject(null, iRegistryClass, "ay");
+				vec3dClass = ReflectionUtil.getNmsClass("Vec3D");
+				minecraftKeyClass = ReflectionUtil.getNmsClass("MinecraftKey");
+				blockPositionClass = ReflectionUtil.getNmsClass("BlockPosition");
+				baseBlockPositionClass = ReflectionUtil.getNmsClass("BaseBlockPosition");
+				biomeBaseClass = ReflectionUtil.getNmsClass("BiomeBase");
+				iRegistryClass = ReflectionUtil.getNmsClass("IRegistry");
 
-			customRegistryWritable = ReflectionUtil.invokeMethod(iRegistryCustomClass, customRegistry, "b", new Object[] { ayResourceKey });
+				Object minecraftServer = ReflectionUtil.invokeMethod(minecraftServerClass, null, "getServer", null, null);
+				Object customRegistry = ReflectionUtil.invokeMethod(minecraftServerClass, minecraftServer, "getCustomRegistry");
+				Object ayResourceKey = ReflectionUtil.getObject(null, iRegistryClass, "ay");
+
+				customRegistryWritable = ReflectionUtil.invokeMethod(iRegistryCustomClass, customRegistry, "b", new Object[] { ayResourceKey });
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

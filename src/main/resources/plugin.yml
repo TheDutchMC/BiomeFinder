@@ -1,5 +1,5 @@
 name: WorldFinder
-main: nl.thedutchmc.worldfinder.WorldFinder
+main: dev.array21.worldfinder.WorldFinder
 version: @version@
 author: TheDutchMC
 api-version: @apiVersion@

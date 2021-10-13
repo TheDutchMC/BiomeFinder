@@ -22,9 +22,9 @@ centerPointZ: 0
 
 # WorldType
 # - AMPLIFIED
-# - NORMAL
+# - DEFAULT
 # - LARGE_BIOMES
-worldType: NORMAL
+worldType: DEFAULT
 
 # Should we print debug output
 isDebug: false
